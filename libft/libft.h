@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solivari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 12:05:47 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/02 10:06:15 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:30:15 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 1
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,6 +25,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					get_next_line(const int fd, char **line);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *str);
 char				*ft_strcpy(char *dest, const char *src);

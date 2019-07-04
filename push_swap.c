@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/03 17:28:41 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:15:08 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,32 @@ t_body	*create_node(int value)
 void	addnode(t_body **stacka, int value)
 {
 	t_body	*node;
+	t_body	*cursor;
 
+	cursor = (*stacka);
 	node = create_node(value);
-	(*stacka)->next = node;
+	while (cursor->next)
+		cursor = cursor->next;
+	cursor->next = node;
 }
 
-void	setmaster(t_body *stacka)
+t_body	*setmaster(t_body **stacka)
 {
-	t_body	*node;
-	node = create_node(0);
-	node->master = 1;
+	(*stacka) = create_node(0);
+	(*stacka)->master = 1;
+	return (*stacka);
 }
 
 int     main(int argc, char **argv)
 {
     int		i;
+	t_body	*cursor;
 	t_body	*stacka;
 	t_body	*stackb;
 
 	i = 1;
-	setmaster(stacka);
+	stacka = setmaster(&stacka);
+	cursor = stacka;
 	if (argc > 1)
 	{
 		while (i < argc)
@@ -55,11 +61,12 @@ int     main(int argc, char **argv)
 			addnode(&stacka, ft_atoi(argv[i++]));
 		}
 	}
-	while (stacka->next != NULL)
+	while (cursor)
 	{
-		printf("%d\n", stacka->value);
-		stacka = stacka->next;
+		printf("head value = %d\n", cursor->value);
+		cursor = cursor->next;
 	}
+	printf("stacka = %d\n", stacka->value);
 	return (0);
 }
 
