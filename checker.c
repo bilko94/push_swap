@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/04 16:02:42 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:39:29 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int     main()
     while ((i = get_next_line(fd,line))> 0)
     {
         // checkops(&line);
-        ft_putstr("Hi shane! i'm currently reading ");
         ft_putendl(*line);
+        ft_putchar('\n');
     }
     // checkops(&line);
     return (0);

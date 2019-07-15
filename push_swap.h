@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/03 17:11:41 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/15 16:48:03 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ typedef struct		s_body
 	struct s_body	*next;
 	struct s_body	*prev;
 }					t_body;
+
+void	sa(t_body	**stacka);
 
 #endif
