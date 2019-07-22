@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/18 16:53:06 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/22 15:25:43 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void    checkops(t_body **stacka, t_body **stackb, char **line)
         pb(stacka, stackb);
     else if (ft_strequ(*line, "ra"))
         ra(stacka);
-    // else if (ft_strequ(*line, "rb"))
-    //     rb(stackb);
-    // else if (ft_strequ(*line, "rr"))
-    //     rr(stacka, stackb);
-    // else if (ft_strequ(*line, "rra"))
-    //     rra(stacka);
-    // else if (ft_strequ(*line, "rrb"))
-    //     rrb(stackb);
-    // else if (ft_strequ(*line, "rrr"))
-    //     rrr(stacka, stackb);
+    else if (ft_strequ(*line, "rb"))
+        rb(stackb);
+    else if (ft_strequ(*line, "rr"))
+        rr(stacka, stackb);
+    else if (ft_strequ(*line, "rra"))
+        rra(stacka);
+    else if (ft_strequ(*line, "rrb"))
+        rrb(stackb);
+    else if (ft_strequ(*line, "rrr"))
+        rrr(stacka, stackb);
 }
 
 int     main(int argc, char **argv)
