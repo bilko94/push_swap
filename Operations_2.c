@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:22:20 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/22 16:18:34 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/25 11:27:44 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ra(t_body **stacka)
 	t_body  *firsta;
 	t_body	*seconda;
 
+	if (!((*stacka)->next) || !((*stacka)->next->next))
+		return ;
 	firsta = (*stacka)->next;
 	seconda = firsta->next;
 	cursorend = (*stacka);
@@ -37,6 +39,8 @@ void	rb(t_body **stackb)
 	t_body	*secondb;
 	t_body  *firstb;
 
+	if (!((*stackb)->next) || !((*stackb)->next->next))
+		return ;
 	firstb = (*stackb)->next;
 	secondb = firstb->next;
 	cursorend = (*stackb);
