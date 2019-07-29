@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/25 13:45:11 by solivari         ###   ########.fr       */
+/*   Updated: 2019/07/29 15:30:55 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			isdup(int ac, char **av)
 		j = i + 1;
 		while (j != ac)
 		{
-			if (j != i && strcmp(av[i], av[j]) == 0)
+			if (j != i && ft_strcmp(av[i], av[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -79,7 +79,7 @@ void		checkerror(int ac, char **av)
 	}
 	if (isdup(ac, av))
 	{
-		printf("Error dup\n");
+		printf("Error\n");
 		exit (0);
 	}
 }
@@ -96,7 +96,6 @@ int     main(int argc, char **argv)
 	j = 1;
 	stacka = setmaster(&stacka, 0);
 	stackb = setmaster(&stackb, 0);
-
 	if (argc > 1)
 	{
 		checkerror(argc, argv);
