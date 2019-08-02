@@ -84,7 +84,12 @@ void		checkerror(int ac, char **av)
 	}
 }
 
-int     main(int argc, char **argv)
+int			checkflgs(char *argv, int argc)
+{
+	
+}
+
+int     	main(int argc, char **argv)
 {
 	int     ret;
 	int		j;
@@ -92,10 +97,11 @@ int     main(int argc, char **argv)
 	char    *line;
 	t_body	*stacka;
 	t_body	*stackb;
-
+	
 	j = 1;
 	stacka = setmaster(&stacka, 0);
 	stackb = setmaster(&stackb, 0);
+	checkflgs(argv, argc);
 	if (argc > 1)
 	{
 		checkerror(argc, argv);
@@ -108,7 +114,8 @@ int     main(int argc, char **argv)
 			checkops(&stacka, &stackb, &line);
 			ft_putendl(line);
 			ft_putchar('\n');
-			printstacks(&stacka, &stackb);
+			vstk(stacka, stackb, flgs);
+			// printstacks(&stacka, &stackb);
 		}
 	}
 	free(line);

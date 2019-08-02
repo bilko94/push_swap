@@ -44,30 +44,61 @@ t_body	*setmaster(t_body **stack, int	fv)
 	return (*stack);
 }
 
-void    printstacks(t_body **stacka, t_body **stackb)
+void	vall(t_body *ta, t_body *tb)
 {
-    t_body	*cursora;
-    t_body  *cursorb;
-    
-    cursora = (*stacka);
-    cursorb = (*stackb);
-    while (cursora || cursorb)
-    {
-        if (cursora != NULL && cursorb != NULL)
-        { 
-           printf("%d	%d\n", cursora->value, cursorb->value);
-           cursora = cursora->next;
-           cursorb = cursorb->next;
-        }
-	   	else if (cursorb == NULL && cursora != NULL)
-	    {
-            printf("%d	-\n", cursora->value);
-	   	    cursora = cursora->next;
-        }
-        else if (cursora == NULL && cursorb != NULL)
-        {
-            printf("-	%d\n", cursorb->value);
-            cursorb = cursorb->next;
-        }
+	while (ta || tb)
+	{
+		if (ta != NULL && tb != NULL)
+		{
+			ft_putstr(ft_itoa(ta->next->value));
+			ft_putstr("\t\t");
+			ft_putendl(ft_itoa(tb->next->value));
+			ta = ta->next;
+			tb = tb->next;
+		}
+		else if (ta != NULL && tb == NULL)
+		{
+			ft_putstr(ft_itoa(ta->next->value));
+			ft_putstr("\t\t");
+			ft_putendl("-");
+			ta = ta->next;
+			tb = tb->next;
+		}
+		else if (ta == NULL && tb != NULL)
+		{
+			ft_putstr("-");
+			ft_putstr("\t\t");
+			ft_putendl(ft_itoa(tb->next->value));
+			ta = ta->next;
+			tb = tb->next;
+		}
 	}
 }
+
+// void    printstacks(t_body **stacka, t_body **stackb)
+// {
+//     t_body	*cursora;
+//     t_body  *cursorb;
+    
+//     cursora = (*stacka);
+//     cursorb = (*stackb);
+//     while (cursora || cursorb)
+//     {
+//         if (cursora != NULL && cursorb != NULL)
+//         { 
+//            printf("%d	%d\n", cursora->value, cursorb->value);
+//            cursora = cursora->next;
+//            cursorb = cursorb->next;
+//         }
+// 	   	else if (cursorb == NULL && cursora != NULL)
+// 	    {
+//             printf("%d	-\n", cursora->value);
+// 	   	    cursora = cursora->next;
+//         }
+//         else if (cursora == NULL && cursorb != NULL)
+//         {
+//             printf("-	%d\n", cursorb->value);
+//             cursorb = cursorb->next;
+//         }
+// 	}
+// }

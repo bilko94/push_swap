@@ -17,6 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+# define vstk(ta, tb, f) {if (f->v) {system("clear");\
+                   ft_putendl("\nStack A\t\tStack B");\
+                   vall(ta, tb);\
+                   ft_putstr("\n\n");\
+                   usleep(100000);}}
 
 typedef struct		s_body
 {
@@ -25,6 +30,13 @@ typedef struct		s_body
 	struct s_body	*next;
 	struct s_body	*prev;
 }					t_body;
+
+typedef struct		s_flgs
+{
+	int		v;
+	int		c;
+};					t_flgs;
+
 
 t_body	*create_node(int value);
 void	addnode(t_body **stack, int value);
