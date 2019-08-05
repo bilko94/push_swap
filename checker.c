@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/29 15:30:55 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/05 16:36:18 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,33 @@ void		checkerror(int ac, char **av)
 		while (av[j][i] != '\0')
 		{
 			if (!(ft_isdigit(av[j][i++])))
-			{
-				printf("Error\n");
-				exit (0);
-			}
+				erexit;
 		}
+		if (ft_atol[j] > INT32_MAX)
+			erexit;
 		j++;
 	}
 	if (isdup(ac, av))
-	{
-		printf("Error\n");
-		exit (0);
-	}
+		erexit;
 }
 
-int			checkflgs(char *argv, int argc)
+void		checkflgs(char *argv, int argc, t_flgs **flags)
 {
-	
+	int i;
+
+	i = 1;
+	while (argc > 0)
+	{
+		if (ft_strcmp(argv[i], "-v") == 0)
+			flags->v = 1;
+		else
+			flags->v = 0;
+		if (ft_strcmp(argv[i++], "-c") == 0)
+			flags->c = 1;
+		else
+			flags->c = 0;
+		argc--;
+	}
 }
 
 int     	main(int argc, char **argv)
@@ -97,11 +107,12 @@ int     	main(int argc, char **argv)
 	char    *line;
 	t_body	*stacka;
 	t_body	*stackb;
+	t_flgs	*flags;
 	
 	j = 1;
 	stacka = setmaster(&stacka, 0);
 	stackb = setmaster(&stackb, 0);
-	checkflgs(argv, argc);
+	checkflgs(argv, argc, &flags);
 	if (argc > 1)
 	{
 		checkerror(argc, argv);
@@ -114,7 +125,8 @@ int     	main(int argc, char **argv)
 			checkops(&stacka, &stackb, &line);
 			ft_putendl(line);
 			ft_putchar('\n');
-			vstk(stacka, stackb, flgs);
+			if (flags->v == 1)
+				vstk(stacka, stackb, flgs);
 			// printstacks(&stacka, &stackb);
 		}
 	}

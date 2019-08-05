@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: solivari <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: solivari <solivari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 15:30:28 by solivari          #+#    #+#              #
-#    Updated: 2019/06/12 17:30:04 by solivari         ###   ########.fr        #
+#    Updated: 2019/08/05 16:07:35 by solivari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_atoi.c ft_putchar.c\
 	   ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_abs.c ft_itoa.c ft_putendl.c\
 	   ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c\
 	   ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_wordcount.c\
-	   ft_wordlen.c ft_maxminrange.c ft_strnequ.c ft_swap.c get_next_line.c
+	   ft_wordlen.c ft_maxminrange.c ft_strnequ.c ft_swap.c get_next_line.c ft_atol.c\
+	   *.c
 
 OBJECTS = ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_atoi.o ft_putchar.o\
 		  ft_putnbr.o ft_putstr.o ft_strcmp.o ft_strncmp.o ft_strstr.o ft_memset.o\
@@ -34,7 +35,7 @@ OBJECTS = ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_atoi.o ft_putchar.
 		  ft_strjoin.o ft_strtrim.o ft_strsplit.o ft_abs.o ft_itoa.o ft_putendl.o\
 		  ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o\
 		  ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_wordcount.o\
-		  ft_wordlen.o ft_maxminrange.o ft_strnequ.o ft_swap.o get_next_line.o
+		  ft_wordlen.o ft_maxminrange.o ft_strnequ.o ft_swap.o get_next_line.o *.o
 
 FLAGS = -Wall -Wextra -Werror
 
