@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/05 16:49:48 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/12 17:06:03 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.a"
-# define INT32_MAX = 2147483647
-# define INT32_MIN = -2147483648
+# define INT32_MAX 2147483647
+# define INT32_MIN -2147483648
 # define erexit {ft_putstr_fd("Error\n",2);exit(1);}
 # define vstk(ta, tb, f) {if (f->v) {system("clear");\
                    ft_putendl("\nStack A\t\tStack B");\

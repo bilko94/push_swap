@@ -6,7 +6,7 @@
 #    By: solivari <solivari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 15:30:28 by solivari          #+#    #+#              #
-#    Updated: 2019/08/05 16:07:35 by solivari         ###   ########.fr        #
+#    Updated: 2019/08/12 17:12:45 by solivari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJECTS = ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_atoi.o ft_putchar.
 		  ft_strjoin.o ft_strtrim.o ft_strsplit.o ft_abs.o ft_itoa.o ft_putendl.o\
 		  ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o\
 		  ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_wordcount.o\
-		  ft_wordlen.o ft_maxminrange.o ft_strnequ.o ft_swap.o get_next_line.o *.o
+		  ft_wordlen.o ft_maxminrange.o ft_strnequ.o ft_swap.o get_next_line.o ft_atol.o *.o
 
 FLAGS = -Wall -Wextra -Werror
 

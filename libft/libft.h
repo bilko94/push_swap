@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 12:05:47 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/04 15:30:15 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/12 17:04:56 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_list
 }					t_list;
 
 int					get_next_line(const int fd, char **line);
+long				ft_atol(char *str);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *str);
 char				*ft_strcpy(char *dest, const char *src);
