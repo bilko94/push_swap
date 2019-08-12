@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   Get_Next_Line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solivari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 12:12:04 by solivari          #+#    #+#             */
-/*   Updated: 2019/06/12 12:07:42 by solivari         ###   ########.fr       */
+/*   Created: 2019/06/16 09:54:11 by solivari          #+#    #+#             */
+/*   Updated: 2019/08/12 19:01:52 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 1
 
-void	ft_putstr(char *str)
-{
-	int i;
+# include "libft.h"
 
-	if (!str)
-		return ;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
+int		get_next_line(const int fd, char **line);
+
+#endif

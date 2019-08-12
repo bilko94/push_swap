@@ -6,13 +6,12 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 12:05:47 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/12 17:04:56 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/12 19:02:28 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 1
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -25,7 +24,6 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					get_next_line(const int fd, char **line);
 long				ft_atol(char *str);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *str);
@@ -88,5 +86,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_wordcount(char const *s, char c);
 int					ft_wordlen(char const *s, char c);
+int					get_next_line(const int fd, char **line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/12 17:02:53 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/12 18:56:34 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		checkerror(int ac, char **av)
 			if (!(ft_isdigit(av[j][i++])))
 				erexit;
 		}
-		if (ft_atol[j] > INT32_MAX)
+		if (ft_atol(av[j]) > INT32_MAX)
 			erexit;
 		j++;
 	}
@@ -80,7 +80,7 @@ void		checkerror(int ac, char **av)
 		erexit;
 }
 
-void		checkflgs(char *argv, int argc, t_flgs **flags)
+void		checkflgs(char **argv, int argc, t_flgs **flags)
 {
 	int i;
 
@@ -88,13 +88,13 @@ void		checkflgs(char *argv, int argc, t_flgs **flags)
 	while (argc > 0)
 	{
 		if (ft_strcmp(argv[i], "-v") == 0)
-			flags->v = 1;
+			(*flags)->v = 1;
 		else
-			flags->v = 0;
+			(*flags)->v = 0;
 		if (ft_strcmp(argv[i++], "-c") == 0)
-			flags->c = 1;
+			(*flags)->c = 1;
 		else
-			flags->c = 0;
+			(*flags)->c = 0;
 		argc--;
 	}
 }
@@ -126,7 +126,7 @@ int     	main(int argc, char **argv)
 			ft_putendl(line);
 			ft_putchar('\n');
 			if (flags->v == 1)
-				vstk(stacka, stackb, flgs);
+				vstk(stacka, stackb, flags);
 			// printstacks(&stacka, &stackb);
 		}
 	}
