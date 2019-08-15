@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/12 18:56:34 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/15 16:40:46 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,67 +38,6 @@ void    checkops(t_body **stacka, t_body **stackb, char **line)
 		rrr(stacka, stackb);
 }
 
-int			isdup(int ac, char **av)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i != ac)
-	{
-		j = i + 1;
-		while (j != ac)
-		{
-			if (j != i && ft_strcmp(av[i], av[j]) == 0)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-void		checkerror(int ac, char **av)
-{
-	int i;
-	int j;
-
-	j = 1;
-	while (j != ac)
-	{
-		i = 0;
-		while (av[j][i] != '\0')
-		{
-			if (!(ft_isdigit(av[j][i++])))
-				erexit;
-		}
-		if (ft_atol(av[j]) > INT32_MAX)
-			erexit;
-		j++;
-	}
-	if (isdup(ac, av))
-		erexit;
-}
-
-void		checkflgs(char **argv, int argc, t_flgs **flags)
-{
-	int i;
-
-	i = 1;
-	while (argc > 0)
-	{
-		if (ft_strcmp(argv[i], "-v") == 0)
-			(*flags)->v = 1;
-		else
-			(*flags)->v = 0;
-		if (ft_strcmp(argv[i++], "-c") == 0)
-			(*flags)->c = 1;
-		else
-			(*flags)->c = 0;
-		argc--;
-	}
-}
-
 int     	main(int argc, char **argv)
 {
 	int     ret;
@@ -112,24 +51,23 @@ int     	main(int argc, char **argv)
 	j = 1;
 	stacka = setmaster(&stacka, 0);
 	stackb = setmaster(&stackb, 0);
-	checkflgs(argv, argc, &flags);
+	if (!(flags = (t_flgs *)malloc(sizeof(t_flgs))))
+		erexit;
 	if (argc > 1)
 	{
-		checkerror(argc, argv);
-		while (j < argc)
-			addnode(&stacka, ft_atoi(argv[j++]));
 		fd = 0;
 		line = malloc(1);
-		while ((ret = get_next_line(fd,&line))> 0)
+		ft_rd(argv, argc, stacka, flags);		
+		vstk(stacka, stackb, flags);
+		while ((ret = get_next_line(fd,&line)) > 0)
 		{
 			checkops(&stacka, &stackb, &line);
 			ft_putendl(line);
 			ft_putchar('\n');
-			if (flags->v == 1)
-				vstk(stacka, stackb, flags);
-			// printstacks(&stacka, &stackb);
+			vstk(stacka, stackb, flags);
 		}
 	}
+	checksort(&stacka);
 	free(line);
 	return (0);
 }

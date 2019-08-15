@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/12 18:59:41 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/15 18:20:34 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-// # define INT32_MAX 2147483647
-// # define INT32_MIN -2147483648
 # define erexit {ft_putstr_fd("Error\n",2);exit(1);}
-# define vstk(ta, tb, f) {if (f->v) {system("clear");\
+# define vstk(ta, tb, f) {if (f->v == 1) {system("clear");\
                    ft_putendl("\nStack A\t\tStack B");\
                    vall(ta, tb);\
                    ft_putstr("\n\n");\
@@ -41,14 +39,16 @@ typedef struct		s_flgs
 }					t_flgs;
 
 
-t_body	*create_node(int value);
-void	addnode(t_body **stack, int value);
+void    ft_rd(char **av, int ac, t_body *stacka, t_flgs *flags);
+void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags);
 t_body	*setmaster(t_body **stack, int	fv);
-// void    printstacks(t_body **stacka, t_body **stackb);
-void	checkflgs(char **argv, int argc, t_flgs **flags);
-void	checkerror(int ac, char **av);
+int		checkflgs(char *str, t_flgs *flags);
+void	addnode(t_body **stack, int value);
 void	vall(t_body *ta, t_body *tb);
-int		isdup(int ac, char **av);
+int		checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+void	isdup(int ac, char **av);
+t_body	*create_node(int value);
+void	checkerror(char *av);
 void	sa(t_body **stacka);
 void    sb(t_body **stackb);
 void    ra(t_body **stacka);
