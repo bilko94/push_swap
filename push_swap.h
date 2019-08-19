@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/15 18:20:34 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/19 19:11:26 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ typedef struct		s_body
 {
 	int				master;
 	int				value;
+	int				dx;
+	int				grpnb;
 	struct s_body	*next;
 	struct s_body	*prev;
+	
 }					t_body;
 
 typedef struct		s_flgs
@@ -39,16 +42,19 @@ typedef struct		s_flgs
 }					t_flgs;
 
 
-void    ft_rd(char **av, int ac, t_body *stacka, t_flgs *flags);
 void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags);
-t_body	*setmaster(t_body **stack, int	fv);
+int		checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+void    ft_rd(char **av, int ac, t_body *stacka, t_flgs *flags);
 int		checkflgs(char *str, t_flgs *flags);
+t_body	*setmaster(t_body **stack, int	fv);
 void	addnode(t_body **stack, int value);
 void	vall(t_body *ta, t_body *tb);
-int		checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+int		ft_list_size(t_body *stacka);
+int		set_index(t_body **stacka, int argc);
 void	isdup(int ac, char **av);
 t_body	*create_node(int value);
 void	checkerror(char *av);
+void	printndx(t_body *stk);
 void	sa(t_body **stacka);
 void    sb(t_body **stackb);
 void    ra(t_body **stacka);

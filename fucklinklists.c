@@ -6,11 +6,49 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 12:42:56 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/15 15:16:46 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/19 19:11:49 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		set_index(t_body **stacka, int ac)
+{
+	int i;
+	int j;
+	t_body	*t;
+	t_body	*t1;
+	
+	i = 0;
+	j = ft_list_size(*stacka);
+	t = (*stacka)->next;
+	while (i < j)
+   {
+       t1 = (*stacka)->next;
+       t = t1;
+       while (t->dx)
+           t = t->next;
+       while (t1)
+       {
+           if ((t1->value < t->value) && !(t1->dx))
+               t = t1;
+           t1 = t1->next;
+       }
+       if (!(t->dx))
+           t->dx = ++i;
+   }
+   return (i);
+
+}
+
+void printndx(t_body *stk)
+{
+   while (stk)
+   {
+       printf("number: %d. Index: %d\n", stk->value, stk->dx);
+       stk = stk->next;
+   }
+}
 
 t_body	*create_node(int value)
 {
@@ -35,6 +73,7 @@ void	addnode(t_body **stack, int value)
 	while (cursor->next)
 		cursor = cursor->next;
 	cursor->next = node;
+	node->prev = cursor;
 }
 
 t_body	*setmaster(t_body **stack, int	fv)

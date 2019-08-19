@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/15 16:40:46 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/16 13:53:21 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int     	main(int argc, char **argv)
 			vstk(stacka, stackb, flags);
 		}
 	}
-	checksort(&stacka);
+	checksort(&stacka,&stackb, flags);
 	free(line);
 	return (0);
 }

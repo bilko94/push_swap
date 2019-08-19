@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/15 18:08:25 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/19 19:53:06 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags)
 			count++;
 			i++;
 			vstk(*stacka, *stackb, flags);
-			// usleep(500000);
 		}
 		ra(stacka);
 		count++;
@@ -75,6 +74,8 @@ int     main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_rd(argv, argc, stacka, flags);
+		if (set_index(&stacka, argc) < 0)
+			erexit;
 		insertsort(&stacka, &stackb, flags);
 	}
 	return (0);
