@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/19 16:16:15 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/20 12:32:03 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void    ft_rd(char **av, int ac, t_body *stacka, t_flgs *flags)
     
     i = 1;
     j = 0;
+	if (ft_strchr(*av, ' '))
+		ft_rd(ft_strsplit(av[i], ' '), ac, stacka, flags);
     isdup(ac, av);
     while (i < ac)
     {
