@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/19 19:53:06 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/26 15:13:13 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ int     main(int argc, char **argv)
 		erexit;
 	if (argc > 1)
 	{
-		ft_rd(argv, argc, stacka, flags);
+		if (ft_rd(argv, stacka, flags) == 0)
+			erexit;
 		if (set_index(&stacka, argc) < 0)
 			erexit;
+		group(&stacka, ft_list_size(stacka));
 		insertsort(&stacka, &stackb, flags);
 	}
+	printndx(stacka);
 	return (0);
 }
 

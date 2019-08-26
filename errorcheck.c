@@ -6,32 +6,34 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/20 12:32:03 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/26 15:21:57 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		isdup(int ac, char **av)
+int		isdup(char **av)
 {
 	int	i;
 	int	j;
+	int	ac;
 
 	i = 1;
-	while (i != ac)
+	while (av[i])
 	{
 		j = i + 1;
-		while (j != ac)
+		while (av[j])
 		{
 			if (j != i && ft_strcmp(av[i], av[j]) == 0)
-				erexit;
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
-void		checkerror(char *av)
+int		checkerror(char *av)
 {
 	int i;
 
@@ -39,10 +41,11 @@ void		checkerror(char *av)
 	while (av[i] != '\0')
 	{
 		if ((!(ft_isdigit(av[i++]))))
-			erexit;
+			return (0);
 	}
 	if (ft_atol(av) > INT32_MAX)
-		erexit;
+		return (0);
+	return (1);
 }
 
 int		checkflgs(char *str, t_flgs *flags)
@@ -60,31 +63,42 @@ int		checkflgs(char *str, t_flgs *flags)
 return (0);
 }
 
-void    ft_rd(char **av, int ac, t_body *stacka, t_flgs *flags)
+int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
 {
-    int i;
-    int j;
-    
+    int 	i;
+	int		j;
+	char	**split;
+
     i = 1;
-    j = 0;
-	if (ft_strchr(*av, ' '))
-		ft_rd(ft_strsplit(av[i], ' '), ac, stacka, flags);
-    isdup(ac, av);
-    while (i < ac)
+    while (av[i])
     {
-        if (av[i][j] == '-')
+		if (ft_strchr(*av, ' '))
+		{
+			j = 0;
+			split = ft_strsplit(av[i], ' ');
+			ft_rd(split, stacka, flags);
+			while (split[j])
+				free(split[j++]);
+			free(split);
+		}
+		if (isdup(av) == 0)
+			return (0);
+        if (av[i][0] == '-')
         {
             if (checkflgs(av[i], flags) == 0)
             {
-                checkerror(av[i]);
+				if (checkerror(av[i]) == 0)
+					return (0);
                 addnode(&stacka, ft_atoi(av[i]));
             }
         }
         else
         {
-            checkerror(av[i]);
+            if (checkerror(av[i]) == 0)
+				return (0);
             addnode(&stacka, ft_atoi(av[i]));
         }
         i++;
     }
+	return (1);
 }

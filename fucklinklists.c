@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 12:42:56 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/19 19:11:49 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/26 09:59:41 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void printndx(t_body *stk)
 {
    while (stk)
    {
-       printf("number: %d. Index: %d\n", stk->value, stk->dx);
+       printf("number: %d. Index: %d\n", stk->value, stk->gp);
        stk = stk->next;
    }
 }
