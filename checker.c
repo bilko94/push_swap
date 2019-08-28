@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/16 13:53:21 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/28 15:20:33 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int     	main(int argc, char **argv)
 	{
 		fd = 0;
 		line = malloc(1);
-		ft_rd(argv, argc, stacka, flags);		
+		ft_rd(argv, stacka, flags);		
 		vstk(stacka, stackb, flags);
 		while ((ret = get_next_line(fd,&line)) > 0)
 		{
@@ -67,7 +67,7 @@ int     	main(int argc, char **argv)
 			vstk(stacka, stackb, flags);
 		}
 	}
-	checksort(&stacka,&stackb, flags);
+	checksort(&stacka, &stackb, flags);
 	free(line);
 	return (0);
 }

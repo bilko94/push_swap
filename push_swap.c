@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/26 15:13:13 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/28 15:37:26 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,38 @@ int		ft_list_size(t_body *stacka)
 	return (i);
 }
 
-void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags)
-{
-	t_body	*current;
-	t_body	*insertion;
-	int		count;
-	int 	i;
+// void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags)
+// {
+// 	t_body	*current;
+// 	t_body	*insertion;
+// 	int		count;
+// 	int 	i;
 	
-	i = 0;
-	count = 0;
-	while (checksort(*stacka, *stackb, flags) == 0)
-	{
-		i = 1;
-		while (i < ft_list_size(*stacka))
-		{
-			insertion = (*stacka)->next;
-			current = (*stacka)->next->next;
-			if (insertion->value > current->value)
-			{
-				sa(stacka);
-				count++;
-			}
-			ra(stacka);
-			count++;
-			i++;
-			vstk(*stacka, *stackb, flags);
-		}
-		ra(stacka);
-		count++;
-		vstk(*stacka, *stackb, flags);
-	}
-	printf("count = %d\n", count);
-}
+// 	i = 0;
+// 	count = 0;
+// 	while (checksort(*stacka, *stackb, flags) == 0)
+// 	{
+// 		i = 1;
+// 		while (i < ft_list_size(*stacka))
+// 		{
+// 			insertion = (*stacka)->next;
+// 			current = (*stacka)->next->next;
+// 			if (insertion->value > current->value)
+// 			{
+// 				sa(stacka);
+// 				count++;
+// 			}
+// 			ra(stacka);
+// 			count++;
+// 			i++;
+// 			vstk(*stacka, *stackb, flags);
+// 		}
+// 		ra(stacka);
+// 		count++;
+// 		vstk(*stacka, *stackb, flags);
+// 	}
+// 	printf("count = %d\n", count);
+// }
 
 int     main(int argc, char **argv)
 {
@@ -73,14 +73,15 @@ int     main(int argc, char **argv)
 		erexit;
 	if (argc > 1)
 	{
-		if (ft_rd(argv, stacka, flags) == 0)
+		if (ft_rd((argv + 1), stacka, flags) == 0)
 			erexit;
-		if (set_index(&stacka, argc) < 0)
+		if (set_index(&stacka) < 0)
 			erexit;
 		group(&stacka, ft_list_size(stacka));
-		insertsort(&stacka, &stackb, flags);
+		call_sort(&stacka, &stackb, flags);
+		// insertsort(&stacka, &stackb, flags);
 	}
-	printndx(stacka);
+	checksort(stacka, stackb, flags);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/26 15:21:57 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/28 12:54:27 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int		checkerror(char *av)
 	int i;
 
 	i = 0;
-	while (av[i] != '\0')
+	while (av[i])
 	{
-		if ((!(ft_isdigit(av[i++]))))
+		if (!(ft_isdigit(av[i++])))
 			return (0);
 	}
 	if (ft_atol(av) > INT32_MAX)
@@ -69,10 +69,10 @@ int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
 	int		j;
 	char	**split;
 
-    i = 1;
-    while (av[i])
+    i = 0;
+    while (av[i] != '\0')
     {
-		if (ft_strchr(*av, ' '))
+		if (ft_strchr(av[i], ' '))
 		{
 			j = 0;
 			split = ft_strsplit(av[i], ' ');
@@ -80,20 +80,21 @@ int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
 			while (split[j])
 				free(split[j++]);
 			free(split);
+			
 		}
-		if (isdup(av) == 0)
-			return (0);
-        if (av[i][0] == '-')
+        else if (av[i][0] == '-')
         {
             if (checkflgs(av[i], flags) == 0)
             {
 				if (checkerror(av[i]) == 0)
 					return (0);
                 addnode(&stacka, ft_atoi(av[i]));
-            }
+			}
         }
         else
         {
+			if (isdup(av) == 0)
+				return (0);
             if (checkerror(av[i]) == 0)
 				return (0);
             addnode(&stacka, ft_atoi(av[i]));

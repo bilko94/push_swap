@@ -6,13 +6,13 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 12:42:56 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/26 09:59:41 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/28 14:28:20 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		set_index(t_body **stacka, int ac)
+int		set_index(t_body **stacka)
 {
 	int i;
 	int j;
@@ -23,8 +23,8 @@ int		set_index(t_body **stacka, int ac)
 	j = ft_list_size(*stacka);
 	t = (*stacka)->next;
 	while (i < j)
-   {
-       t1 = (*stacka)->next;
+	{
+	   t1 = (*stacka)->next;
        t = t1;
        while (t->dx)
            t = t->next;
@@ -36,9 +36,8 @@ int		set_index(t_body **stacka, int ac)
        }
        if (!(t->dx))
            t->dx = ++i;
-   }
-   return (i);
-
+	}
+	return (i);
 }
 
 void printndx(t_body *stk)
@@ -59,6 +58,8 @@ t_body	*create_node(int value)
 	node->value = value;
 	node->next = NULL;
 	node->prev = NULL;
+	node->dx = 0;
+	node->gp = 0;
 	node->master = 0;
 	return (node);
 }

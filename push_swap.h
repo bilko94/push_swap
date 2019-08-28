@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/26 15:18:47 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/28 17:37:40 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 # define erexit {ft_putstr_fd("Error\n",2);exit(1);}
-# define vstk(ta, tb, f) {if (f->v == 1) {system("clear");\
+# define vstk(ta, tb, f) {if (f->v == 1) {/*system("clear");*/\
                    ft_putendl("\nStack A\t\tStack B");\
                    vall(ta, tb);\
                    ft_putstr("\n\n");\
-                   usleep(100000);}}
+                   usleep(10000);}}
 
 typedef struct		s_body
 {
@@ -42,21 +42,27 @@ typedef struct		s_flgs
 }					t_flgs;
 
 
+void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags);
+void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp);
 void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags);
-int		checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp);
+void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
+void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
+void	checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+void	caller(t_body **stacka, t_body **stackb, char *s);
 int		ft_rd(char **av, t_body *stacka, t_flgs *flags);
 void	setgroup(t_body *stacka, int gp, int range);
-int		set_index(t_body **stacka, int argc);
 int		checkflgs(char *str, t_flgs *flags);
 t_body	*setmaster(t_body **stack, int	fv);
 void	addnode(t_body **stack, int value);
 void	group(t_body **stacka, int size);
 void	vall(t_body *ta, t_body *tb);
 int		ft_list_size(t_body *stacka);
-int		isdup(char **av);
+int		set_index(t_body **stacka);
 t_body	*create_node(int value);
-int		checkerror(char *av);
 void	printndx(t_body *stk);
+int		checkerror(char *av);
+int		isdup(char **av);
 void	sa(t_body **stacka);
 void    sb(t_body **stackb);
 void    ra(t_body **stacka);
