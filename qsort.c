@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:59:03 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/28 17:50:31 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/29 16:43:03 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	setgroup(t_body *stacka, int gp, int range)
 	}
 }
 
-void   group(t_body **stacka, int size)
+void   group(t_body **stacka, double size)
 {
-	int		min;
-	int		max;
-	int		range = (size / 5);
-	int		add = (size / 5);
+	int			min;
+	int			max;
+	double		range = (size / 5);
+	double		add = (size / 5);
 	
 	setgroup(*stacka, 1, range);
 	range += add;
@@ -73,10 +73,10 @@ void   group(t_body **stacka, int size)
 
 void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
 {
-	int		i;
-	int		range;
-	int		hold;
-	t_body	*cursor;
+	int			i;
+	double		range;
+	double		hold;
+	t_body		*cursor;
 
 	i = 1;
 	range = ft_list_size(*stacka) + 1;
@@ -101,8 +101,6 @@ void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
 				}
 			}
 			vstk(*stacka, *stackb, flags);
-			printf("cursor = %d\n", cursor->value);
-			printf("cursor = %d\n", cursor->gp);
 			caller(stacka, stackb, "pb");
 			vstk(*stacka, *stackb, flags);
 			i = 1;
@@ -116,16 +114,16 @@ void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
 	}
 }
 
-void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp)
+void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size)
 {
-	int		i;
-	int		hold;
-	int		range;
-	t_body	*cursor;
+	int			i;
+	int			hold;
+	int			range;
+	t_body		*cursor;
 
 	hold = 1;
 	range = ft_list_size(*stacka) / 2;
-	i = (((grp - 1) * (ft_list_size(*stacka) / 4)) + 1);
+	i = (((grp - 1) * ((double)size / 5)) + 1);
 	cursor = (*stacka)->next;
 	while (cursor->dx != i && cursor)
 	{
@@ -147,16 +145,16 @@ void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp)
 	}
 }
 
-void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp)
+void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size)
 {
 	int		hold;
-	int		range;
+	double	range;
 	int		max;
 	t_body	*cursor;
 	
 	hold = 0;
 	range = ft_list_size(*stackb) + 1;
-	max = grp * ft_list_size(*stackb);
+	max = grp * ((double)size / 5) + 1;
 	cursor = (*stackb)->next;
 	while ((*stackb)->next != NULL)
 	{
@@ -238,16 +236,16 @@ void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
 void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
 {
 	int	grp;
-
+	int size;
+	
+	size = ft_list_size(*stacka);
 	grp = 5;
 	while (grp != 0)
 	{
 		group_push(stacka, stackb, grp, flags);
-		if (grp == 5)
-			sort_a(stacka, stackb, flags, 1);
-		else
-			sort_a(stacka, stackb, flags, (grp + 1));
-		group_sort(stacka, stackb, flags, grp);
+		if (grp != 5)
+			sort_a(stacka, stackb, flags, (grp + 1), size);
+		group_sort(stacka, stackb, flags, grp, size);
 		grp--;
 	}
 	final_sort(stacka, stackb, flags);

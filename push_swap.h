@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/28 17:37:40 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:55:20 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct		s_flgs
 
 
 void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags);
-void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp);
+void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size);
 void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags);
-void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp);
+void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size);
 void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
 void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
 void	checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
@@ -55,7 +55,7 @@ void	setgroup(t_body *stacka, int gp, int range);
 int		checkflgs(char *str, t_flgs *flags);
 t_body	*setmaster(t_body **stack, int	fv);
 void	addnode(t_body **stack, int value);
-void	group(t_body **stacka, int size);
+void	group(t_body **stacka, double size);
 void	vall(t_body *ta, t_body *tb);
 int		ft_list_size(t_body *stacka);
 int		set_index(t_body **stacka);
