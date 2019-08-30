@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 13:05:49 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 19:26:05 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,36 @@ int		checkflgs(char *str, t_flgs *flags)
 return (0);
 }
 
-int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
+void	split(char *av, t_body **stacka, t_body **stackb, t_flgs **flags)
 {
-    int 	i;
 	int		j;
 	char	**split;
+
+	j = 0;
+	split = ft_strsplit(av, ' ');
+	if (ft_rd(split, stacka, stackb, flags) == 0)
+		erexit(stacka, stackb, flags);
+	while (split[j])
+		free(split[j++]);
+	free(split);
+}
+
+int		ft_rd(char **av, t_body **stacka, t_body **stackb, t_flgs **flags)
+{
+    int 	i;
 
     i = 0;
     while (av[i] != '\0')
     {
 		if (ft_strchr(av[i], ' '))
-		{
-			j = 0;
-			split = ft_strsplit(av[i], ' ');
-			if (ft_rd(split, stacka, flags) == 0)
-				erexit;
-			while (split[j])
-				free(split[j++]);
-			free(split);
-			
-		}
+			split(av[i], stacka, stackb, flags);
         else if (av[i][0] == '-')
         {
-            if (checkflgs(av[i], flags) == 0)
+            if (checkflgs(av[i], *flags) == 0)
             {
 				if (checkerror(av[i]) == 0)
 					return (0);
-                addnode(&stacka, ft_atoi(av[i]));
+                addnode(stacka, ft_atoi(av[i]));
 			}
         }
         else
@@ -97,7 +100,7 @@ int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
 				return (0);
 			if (isdup(av) == 0)
 				return (0);
-            addnode(&stacka, ft_atoi(av[i]));
+            addnode(stacka, ft_atoi(av[i]));
         }
         i++;
     }

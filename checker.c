@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 14:06:19 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 18:34:50 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	checkops(t_body **stacka, t_body **stackb, char **line)
 		rrr(stacka, stackb);
 }
 
-int		runwhile(t_body **stacka, t_body **stackb, t_flgs *flags, t_var **var)
+int		runwhile(t_body **stacka, t_body **stackb, t_flgs **flags, t_var **var)
 {
 	int	moves;
 
@@ -50,8 +50,8 @@ int		runwhile(t_body **stacka, t_body **stackb, t_flgs *flags, t_var **var)
 		if (validcheck((*var)->line) == 1)
 			moves++;
 		else if (validcheck((*var)->line) == 0)
-			erexit;
-		vstk((*stacka)->next, (*stackb)->next, flags);
+			erexitc(stacka, stackb, flags, var);
+		vstk((*stacka)->next, (*stackb)->next, (*flags));
 		if (checksort(*stacka, *stackb) == 1)
 			break ;
 	}
@@ -65,8 +65,8 @@ t_var	*initialize(void)
 	if (!(new = (t_var *)malloc(sizeof(t_var) + 1)))
 		return (NULL);
 	new->fd = 0;
-	new->j = 0;
-	new->line = NULL;
+	new->j = 1;
+	new->line = malloc(1);
 	new->ret = 0;
 	return (new);
 }
@@ -94,21 +94,18 @@ int		main(int argc, char **argv)
 
 	moves = 0;
 	var = initialize();
-	var->j = 1;
 	stacka = setmaster(&stacka, 0);
 	stackb = setmaster(&stackb, 0);
 	if (!(flags = (t_flgs *)malloc(sizeof(t_flgs))))
-		erexit;
+		erexitc(&stacka, &stackb, &flags, &var);
 	if (argc > 1)
 	{
-		var->fd = 0;
-		var->line = malloc(1);
-		if (ft_rd((argv + 1), stacka, flags) == 0)
-			erexit;
+		if (ft_rd((argv + 1), &stacka, &stackb, &flags) == 0)
+			erexitc(&stacka, &stackb, &flags, &var);
 		vstk(stacka->next, stackb->next, flags);
-		moves = runwhile(&stacka, &stackb, flags, &var);
+		moves = runwhile(&stacka, &stackb, &flags, &var);
 	}
 	check(stacka, stackb, moves, flags);
-	free(var);
+	freecaller(&stacka, &stackb, &flags, &var);
 	return (0);
 }

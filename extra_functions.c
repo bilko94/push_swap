@@ -1,16 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra_fuctions.c                                   :+:      :+:    :+:   */
+/*   extra_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 10:49:02 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 13:54:23 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 20:29:00 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		sethold(t_body **stack, int max)
+{
+	int		hold;
+	t_body	*cursor;
+
+	hold = 0;
+	cursor = (*stack)->next;
+	while (cursor->dx != max)
+	{
+		cursor = cursor->next;
+		hold++;
+	}
+	return (hold);
+}
+
+void	freestk(t_body **stacka, t_body **stackb)
+{
+	t_body	*cursor;
+	t_body	*cursor1;
+
+	cursor = (*stacka);
+	cursor1 = cursor->next;
+
+	while (cursor->next)
+	{
+		cursor = cursor1;
+		free(cursor);
+		cursor1 = cursor1->next;
+	}
+	free(*stacka);
+
+	cursor = (*stackb);
+	cursor1 = cursor->next;
+
+	while (cursor->next)
+	{
+		cursor = cursor1;
+		free(cursor);
+		cursor1 = cursor1->next;
+	}
+	free(*stackb);
+}
+
+void	freecaller(t_body **stacka, t_body **stackb, t_flgs **flags, t_var **var)
+{
+	freestk(stacka, stackb);
+	free(*flags);
+	free(*var);
+}
 
 int		ft_list_size(t_body *stacka)
 {

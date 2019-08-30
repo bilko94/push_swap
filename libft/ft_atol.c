@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 15:53:59 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/12 17:05:00 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 19:01:23 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 long	ft_atol(char *str)
 {
 	long	i;
-	int	    k;
-	int	    neg;
+	int		k;
+	int		neg;
 
 	i = 0;
 	k = 0;
