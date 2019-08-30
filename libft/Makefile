@@ -48,6 +48,7 @@ $(NAME):
 	gcc -c $(SRCS) $(FLAGS) $(HEAD)
 	ar rc $(NAME) $(OBJECTS) $(GHEAD)
 	ranlib $(NAME)
+	$(MAKE) clean
 
 clean:
 	/bin/rm -f $(OBJECTS)

@@ -6,16 +6,15 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:59:03 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/29 16:43:03 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 12:35:56 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int	MOVES = 0;
+
 
 void	caller(t_body **stacka, t_body **stackb, char *s)
 {
-	MOVES += 1;
 	if(ft_strequ(s, "sa"))
 		sa(stacka);
 	else if (ft_strequ(s, "sb"))
@@ -55,8 +54,6 @@ void	setgroup(t_body *stacka, int gp, int range)
 
 void   group(t_body **stacka, double size)
 {
-	int			min;
-	int			max;
 	double		range = (size / 5);
 	double		add = (size / 5);
 	
@@ -71,7 +68,7 @@ void   group(t_body **stacka, double size)
 	setgroup(*stacka, 5, range);
 }
 
-void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
+void	group_push(t_body **stacka, t_body **stackb, int grp)
 {
 	int			i;
 	double		range;
@@ -91,18 +88,17 @@ void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
 			{
 				if (hold <= (range / 2))
 				{	
-					vstk(*stacka, *stackb, flags);
+					write (1, "ra\n", 3);
 					caller(stacka, stackb, "ra");
 				}
 				else
 				{
-					vstk(*stacka, *stackb, flags);
+					write (1, "rra\n", 4);
 					caller(stacka, stackb, "rra");
 				}
 			}
-			vstk(*stacka, *stackb, flags);
+			write (1, "pb\n", 3);
 			caller(stacka, stackb, "pb");
-			vstk(*stacka, *stackb, flags);
 			i = 1;
 			cursor = (*stacka)->next;
 		}
@@ -114,7 +110,7 @@ void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags)
 	}
 }
 
-void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size)
+void	sort_a(t_body **stacka, t_body **stackb, int grp, int size)
 {
 	int			i;
 	int			hold;
@@ -134,18 +130,18 @@ void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size)
 	{
 		if (hold <= range)
 		{
-			vstk(*stacka, *stackb, flags);
+			write (1, "ra\n", 3);
 			caller(stacka, stackb, "ra");
 		}
 		else
 		{
-			vstk(*stacka, *stackb, flags);
+			write (1, "rra\n", 4);
 			caller(stacka, stackb, "rra");
 		}
 	}
 }
 
-void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size)
+void	group_sort(t_body **stacka, t_body **stackb, int grp, int size)
 {
 	int		hold;
 	double	range;
@@ -164,7 +160,7 @@ void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int si
 		max -= 1;
 		if (!(*stackb)->next->next)
 		{	
-			vstk(*stacka, *stackb, flags);
+			write (1, "pa\n", 3);
 			caller(stacka, stackb, "pa");
 		}	
 		else
@@ -178,7 +174,7 @@ void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int si
 			{
 				while ((*stackb)->next->dx != max)
 				{
-					vstk(*stacka, *stackb, flags);
+					write (1, "rb\n", 3);
 					caller(stacka, stackb, "rb");
 				}
 			}
@@ -186,17 +182,17 @@ void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int si
 			{
 				while ((*stackb)->next->dx != max)
 				{
-					vstk(*stacka, *stackb, flags);
+					write (1, "rrb\n", 4);
 					caller(stacka, stackb, "rrb");
 				}	
 			}
-			vstk(*stacka, *stackb, flags);
+			write (1, "pa\n", 3);
 			caller(stacka, stackb, "pa");
 		}
 	}
 }
 
-void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
+void	final_sort(t_body **stacka, t_body **stackb)
 {
 	int		range;
 	int		hold;
@@ -215,13 +211,13 @@ void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
 			{
 				if (hold <= range)
 				{
+					write (1, "ra\n", 3);
 					caller(stacka, stackb, "ra");
-					vstk(*stacka, *stackb, flags);
 				}
 				else
 				{
+					write (1, "rra\n", 4);
 					caller(stacka, stackb, "rra");
-					vstk(*stacka, *stackb, flags);
 				}
 			}
 		}
@@ -233,7 +229,7 @@ void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
 	}
 }
 
-void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
+void	call_sort(t_body **stacka, t_body **stackb)
 {
 	int	grp;
 	int size;
@@ -242,13 +238,11 @@ void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags)
 	grp = 5;
 	while (grp != 0)
 	{
-		group_push(stacka, stackb, grp, flags);
+		group_push(stacka, stackb, grp);
 		if (grp != 5)
-			sort_a(stacka, stackb, flags, (grp + 1), size);
-		group_sort(stacka, stackb, flags, grp, size);
+			sort_a(stacka, stackb, (grp + 1), size);
+		group_sort(stacka, stackb, grp, size);
 		grp--;
 	}
-	final_sort(stacka, stackb, flags);
-	vstk(*stacka, *stackb, flags);
-	printf("moves = %d\n", MOVES);
+	final_sort(stacka, stackb);
 }

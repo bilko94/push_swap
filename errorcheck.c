@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/28 12:54:27 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 13:05:49 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		isdup(char **av)
 {
 	int	i;
 	int	j;
-	int	ac;
 
 	i = 1;
 	while (av[i])
@@ -76,7 +75,8 @@ int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
 		{
 			j = 0;
 			split = ft_strsplit(av[i], ' ');
-			ft_rd(split, stacka, flags);
+			if (ft_rd(split, stacka, flags) == 0)
+				erexit;
 			while (split[j])
 				free(split[j++]);
 			free(split);
@@ -93,9 +93,9 @@ int    ft_rd(char **av, t_body *stacka, t_flgs *flags)
         }
         else
         {
-			if (isdup(av) == 0)
-				return (0);
             if (checkerror(av[i]) == 0)
+				return (0);
+			if (isdup(av) == 0)
 				return (0);
             addnode(&stacka, ft_atoi(av[i]));
         }

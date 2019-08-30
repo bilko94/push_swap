@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 12:42:56 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/29 14:44:55 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:05:24 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ t_body	*setmaster(t_body **stack, int	fv)
 
 void	vall(t_body *ta, t_body *tb)
 {
-	ta = ta->next;
-	tb = tb->next;
+	ft_putstr("\033[22;32m");
 	while (ta || tb)
 	{
 		if (ta != NULL && tb != NULL)
@@ -113,4 +112,5 @@ void	vall(t_body *ta, t_body *tb)
 			tb = tb->next;
 		}
 	}
+	ft_putstr("\033[22;32m");
 }

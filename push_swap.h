@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/29 15:55:20 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:05:49 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# define erexit {ft_putstr_fd("Error\n",2);exit(1);}
-# define vstk(ta, tb, f) {if (f->v == 1) {/*system("clear");*/\
-                   ft_putendl("\nStack A\t\tStack B");\
+# define erexit {ft_putstr_fd("\033[31mError invalid input\n\033[31m",2);exit(1);}
+# define vstk(ta, tb, f) {if (f->v == 1) {system("clear");\
+                   ft_putendl("\033[01;37m\nStack A\t\tStack B\033[01;37m");\
                    vall(ta, tb);\
                    ft_putstr("\n\n");\
                    usleep(10000);}}
@@ -37,18 +37,26 @@ typedef struct		s_body
 
 typedef struct		s_flgs
 {
-	int		v;
-	int		c;
+	int				v;
+	int				c;
 }					t_flgs;
 
+typedef struct		s_var
+{
+	int				ret;
+	int				j;
+	int				fd;
+	char			*line;
+}					t_var;
 
-void	group_push(t_body **stacka, t_body **stackb, int grp, t_flgs *flags);
-void	sort_a(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size);
-void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags);
-void	group_sort(t_body **stacka, t_body **stackb, t_flgs *flags, int grp, int size);
-void	final_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
-void	call_sort(t_body **stacka, t_body **stackb, t_flgs *flags);
-void	checksort(t_body *stacka, t_body *stackb, t_flgs *flags);
+void	group_push(t_body **stacka, t_body **stackb, int grp);
+void	sort_a(t_body **stacka, t_body **stackb, int grp, int size);
+void	group_sort(t_body **stacka, t_body **stackb, int grp, int size);
+void	final_sort(t_body **stacka, t_body **stackb);
+void	call_sort(t_body **stacka, t_body **stackb);
+int		checksort(t_body *stacka, t_body *stackb);
+int		validcheck(char *line);
+void	check(t_body *stacka, t_body *stackb, int moves, t_flgs *flags);
 void	caller(t_body **stacka, t_body **stackb, char *s);
 int		ft_rd(char **av, t_body *stacka, t_flgs *flags);
 void	setgroup(t_body *stacka, int gp, int range);

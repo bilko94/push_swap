@@ -6,62 +6,28 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/29 16:43:29 by solivari         ###   ########.fr       */
+/*   Updated: 2019/08/30 12:15:29 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_list_size(t_body *stacka)
-{
-	int	i;
-
-	i = -1;
-	while (stacka)
-	{
-		i++;
-		stacka = stacka->next;
-	}
-	return (i);
-}
-
-// void	insertsort(t_body **stacka, t_body **stackb, t_flgs *flags)
+// int		ft_list_size(t_body *stacka)
 // {
-// 	t_body	*current;
-// 	t_body	*insertion;
-// 	int		count;
-// 	int 	i;
-	
-// 	i = 0;
-// 	count = 0;
-// 	while (checksort(*stacka, *stackb, flags) == 0)
+// 	int	i;
+
+// 	i = -1;
+// 	while (stacka)
 // 	{
-// 		i = 1;
-// 		while (i < ft_list_size(*stacka))
-// 		{
-// 			insertion = (*stacka)->next;
-// 			current = (*stacka)->next->next;
-// 			if (insertion->value > current->value)
-// 			{
-// 				sa(stacka);
-// 				count++;
-// 			}
-// 			ra(stacka);
-// 			count++;
-// 			i++;
-// 			vstk(*stacka, *stackb, flags);
-// 		}
-// 		ra(stacka);
-// 		count++;
-// 		vstk(*stacka, *stackb, flags);
+// 		i++;
+// 		stacka = stacka->next;
 // 	}
-// 	printf("count = %d\n", count);
+// 	return (i);
 // }
 
 int     main(int argc, char **argv)
 {
     int		j;
-	t_body	*cursor;
 	t_body	*stacka;
 	t_body	*stackb;
 	t_flgs	*flags;
@@ -78,10 +44,14 @@ int     main(int argc, char **argv)
 		if (set_index(&stacka) < 0)
 			erexit;
 		group(&stacka, ft_list_size(stacka));
-		call_sort(&stacka, &stackb, flags);
-		// insertsort(&stacka, &stackb, flags);
+		if (checksort(stacka, stackb) == 1)
+		{
+			ft_putendl("\033[32mOK\033[00m");
+			return (0);
+		}
+		call_sort(&stacka, &stackb);
 	}
-	checksort(stacka, stackb, flags);
+	checksort(stacka, stackb);
 	return (0);
 }
 
