@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 10:49:02 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 20:29:00 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:30:29 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	freestk(t_body **stacka, t_body **stackb)
 
 	cursor = (*stacka);
 	cursor1 = cursor->next;
-
 	while (cursor->next)
 	{
 		cursor = cursor1;
@@ -42,10 +41,8 @@ void	freestk(t_body **stacka, t_body **stackb)
 		cursor1 = cursor1->next;
 	}
 	free(*stacka);
-
 	cursor = (*stackb);
 	cursor1 = cursor->next;
-
 	while (cursor->next)
 	{
 		cursor = cursor1;
@@ -55,7 +52,7 @@ void	freestk(t_body **stacka, t_body **stackb)
 	free(*stackb);
 }
 
-void	freecaller(t_body **stacka, t_body **stackb, t_flgs **flags, t_var **var)
+void	freecall(t_body **stacka, t_body **stackb, t_flgs **flags, t_var **var)
 {
 	freestk(stacka, stackb);
 	free(*flags);

@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:22:43 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 19:10:00 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 18:33:06 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int		main(int argc, char **argv)
 		if (set_index(&stacka) < 0)
 			erexit(&stacka, &stackb, &flags);
 		group(&stacka, ft_list_size(stacka));
-		if (checksort(stacka, stackb) == 0)
+		if (ft_list_size(stacka) < 6)
+			short_call(&stacka, &stackb);
+		else if (checksort(stacka, stackb) == 0)
 			call_sort(&stacka, &stackb);
 	}
 	freestk(&stacka, &stackb);

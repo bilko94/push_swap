@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Get_Next_Line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solivari <solivari@student.wethinkcode.    +#+  +:+       +#+        */
+/*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 10:48:57 by solivari          #+#    #+#             */
-/*   Updated: 2019/06/26 16:35:05 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:39:34 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Get_Next_Line.h"
+#include "get_next_line.h"
 
 static int		ft_nextline(char **str, char **line, int fd, int ret)
 {
@@ -39,7 +39,7 @@ static int		ft_nextline(char **str, char **line, int fd, int ret)
 	return (1);
 }
 
-int			get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static char		*str[200];
 	char			buffer[BUFF_SIZE + 1];
@@ -54,10 +54,10 @@ int			get_next_line(const int fd, char **line)
 		if (str[fd] == NULL)
 			str[fd] = ft_strnew(1);
 		temp = ft_strjoin(str[fd], buffer);
-		free (str[fd]);
+		free(str[fd]);
 		str[fd] = temp;
 		if (ft_strchr(buffer, '\n'))
-			break;
+			break ;
 	}
 	if (ret < 0)
 		return (-1);

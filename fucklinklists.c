@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 12:42:56 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 19:19:02 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 16:41:11 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,33 +73,4 @@ t_body	*setmaster(t_body **stack, int fv)
 	(*stack) = create_node(fv);
 	(*stack)->master = 1;
 	return (*stack);
-}
-
-void	vall(t_body *ta, t_body *tb)
-{
-	ft_putstr("\033[22;32m");
-	while (ta || tb)
-	{
-		if (ta != NULL && tb != NULL)
-		{
-			ft_putstr(ft_itoa(ta->value));
-			ft_putstr("\t\t");
-			ft_putendl(ft_itoa(tb->value));
-			ta = ta->next;
-			tb = tb->next;
-		}
-		else if (ta != NULL && tb == NULL)
-		{
-			ft_putstr(ft_itoa(ta->value));
-			ft_putendl("\t\t-");
-			ta = ta->next;
-		}
-		else if (ta == NULL && tb != NULL)
-		{
-			ft_putstr("-\t\t");
-			ft_putendl(ft_itoa(tb->value));
-			tb = tb->next;
-		}
-	}
-	ft_putstr("\033[22;32m");
 }

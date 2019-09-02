@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:08:00 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 18:34:50 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:30:42 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,19 @@ t_var	*initialize(void)
 
 void	check(t_body *stacka, t_body *stackb, int moves, t_flgs *flags)
 {
-	if (checksort(stacka, stackb) == 1)
+	if (checksort(stacka, stackb) == 1 && flags->c == 1)
 		ft_putendl("\033[32mOK!\n\033[00m");
-	else
-		ft_putendl("\033[31mKO!\n\033[31m");
+	else if (checksort(stacka, stackb) == 1 && flags->c != 1)
+		ft_putendl("OK!\n");
+	if (checksort(stacka, stackb) == 0 && flags->c == 1)
+		ft_putendl("\033[32mKO!\n\033[00m");
+	else if (checksort(stacka, stackb) == 0 && flags->c != 1)
+		ft_putendl("KO!\n");
 	if (flags->c == 1)
-	{
 		ft_putstr("\033[33mMoves = \033[33m");
-		ft_putendl(ft_itoa(moves));
-	}
+	else
+		ft_putstr("Moves = ");
+	ft_putendl(ft_itoa(moves));
 }
 
 int		main(int argc, char **argv)
@@ -106,6 +110,6 @@ int		main(int argc, char **argv)
 		moves = runwhile(&stacka, &stackb, &flags, &var);
 	}
 	check(stacka, stackb, moves, flags);
-	freecaller(&stacka, &stackb, &flags, &var);
+	freecall(&stacka, &stackb, &flags, &var);
 	return (0);
 }

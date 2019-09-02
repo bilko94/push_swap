@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Operations_2.c                                     :+:      :+:    :+:   */
+/*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 16:22:20 by solivari          #+#    #+#             */
-/*   Updated: 2019/07/25 11:27:44 by solivari         ###   ########.fr       */
+/*   Created: 2019/09/02 16:44:53 by solivari          #+#    #+#             */
+/*   Updated: 2019/09/02 16:50:25 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ra(t_body **stacka)
 {
-	t_body  *cursorend;
-	t_body  *firsta;
+	t_body	*cursorend;
+	t_body	*firsta;
 	t_body	*seconda;
 
 	if (!((*stacka)->next) || !((*stacka)->next->next))
@@ -35,9 +35,9 @@ void	ra(t_body **stacka)
 
 void	rb(t_body **stackb)
 {
-	t_body  *cursorend;
+	t_body	*cursorend;
 	t_body	*secondb;
-	t_body  *firstb;
+	t_body	*firstb;
 
 	if (!((*stackb)->next) || !((*stackb)->next->next))
 		return ;
@@ -49,7 +49,7 @@ void	rb(t_body **stackb)
 	if (secondb)
 	{
 		cursorend->next = firstb;
-		(*stackb)->next = secondb;	
+		(*stackb)->next = secondb;
 		firstb->next = NULL;
 	}
 }
@@ -62,9 +62,9 @@ void	rr(t_body **stacka, t_body **stackb)
 
 void	rra(t_body **stacka)
 {
-	t_body  *cursorend;
-	t_body  *secondlast;
-	t_body  *firsta;
+	t_body	*cursorend;
+	t_body	*secondlast;
+	t_body	*firsta;
 	t_body	*seconda;
 
 	if (!((*stacka)->next) || !((*stacka)->next->next))
@@ -85,11 +85,11 @@ void	rra(t_body **stacka)
 	}
 }
 
-void    rrb(t_body **stackb)
+void	rrb(t_body **stackb)
 {
-	t_body  *cursorend;
-	t_body  *secondlast;
-	t_body  *firstb;
+	t_body	*cursorend;
+	t_body	*secondlast;
+	t_body	*firstb;
 	t_body	*secondb;
 
 	if (!((*stackb)->next) || !((*stackb)->next->next))
@@ -108,10 +108,4 @@ void    rrb(t_body **stackb)
 		(*stackb)->next = cursorend;
 		secondlast->next = NULL;
 	}
-}
-
-void    rrr(t_body **stacka, t_body **stackb)
-{
-	rra(stacka);
-	rrb(stackb);
 }

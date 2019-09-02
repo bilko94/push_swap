@@ -6,7 +6,7 @@
 #    By: solivari <solivari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/30 09:58:50 by solivari          #+#    #+#              #
-#    Updated: 2019/08/30 20:37:48 by solivari         ###   ########.fr        #
+#    Updated: 2019/09/02 16:49:54 by solivari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,12 @@ NAME1 = push_swap
 
 NAME2 = checker
 
-SRCS1 = Operations_1.c Operations_2.c checksort.c errorcheck.c fucklinklists.c push_swap.c\
-		qsort.c extra_functions.c errors.c group.c algofuncs.c libft/libft.a
+SRCS1 = operations_1.c operations_2.c checksort.c errorcheck.c fucklinklists.c push_swap.c\
+		qsort.c extra_functions.c errors.c group.c algofuncs.c shortsort.c operations_3.c\
+		libft/libft.a
 
-SRCS2 = Operations_1.c Operations_2.c checksort.c errorcheck.c fucklinklists.c checker.c\
-		extra_functions.c errors.c libft/libft.a
+SRCS2 = operations_1.c operations_2.c checksort.c errorcheck.c fucklinklists.c checker.c\
+		extra_functions.c errors.c visualizer.c operations_3.c libft/libft.a
 
 FLAGS = -Wall -Wextra -Werror
 

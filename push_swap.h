@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 09:59:01 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 20:46:46 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:30:48 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				ifa(t_body **stacka, t_body **stackb,\
 					double hold, double range);
 void				vstk(t_body *stacka, t_body *stackb,\
 					t_flgs *flags);
-void				freecaller(t_body **stacka,\
+void				freecall(t_body **stacka,\
 					t_body **stackb, t_flgs **flags, t_var **var);
 void				group_sort(t_body **stacka,\
 					t_body **stackb, int grp, double size);
@@ -65,14 +65,20 @@ void				check(t_body *stacka,\
 					t_body *stackb, int moves, t_flgs *flags);
 void				sort_a(t_body **stacka,\
 					t_body **stackb, int grp, double size);
-void				group_push(t_body **stacka, t_body **stackb, int grp);
-void				caller(t_body **stacka, t_body **stackb, char *s);
-int					sethold(t_body **stack, int max);
 void				bestop(t_body **stacka, t_body **stackb,\
 					int hold, int range);
+void				group_push(t_body **stacka, t_body **stackb, int grp);
+int					checkneg(char *av, t_body **stacka, t_flgs **flags);
+void				acaller(t_body **stacka, t_body **stackb, char *s);
+void				bcaller(t_body **stacka, t_body **stackb, char *s);
+void				caller(t_body **stacka, t_body **stackb, char *s);
 void				final_sort(t_body **stacka, t_body **stackb);
+void				insertsort(t_body **stacka, t_body **stackb);
+void				short_call(t_body **stacka, t_body **stackb);
 void				setgroup(t_body *stacka, int gp, int range);
+void				vall(t_body *ta, t_body *tb, t_flgs *flags);
 void				call_sort(t_body **stacka, t_body **stackb);
+void				hardsort(t_body **stacka, t_body **stackb);
 int					checksort(t_body *stacka, t_body *stackb);
 void				freestk(t_body **stacka, t_body **stackb);
 void				freeme(t_body **stacka, t_body **stackb);
@@ -85,8 +91,10 @@ int					checkflgs(char *str, t_flgs *flags);
 t_body				*setmaster(t_body **stack, int	fv);
 void				group(t_body **stacka, double size);
 void				addnode(t_body **stack, int value);
-void				vall(t_body *ta, t_body *tb);
+int					sethold(t_body **stack, int max);
+int					falsechecksort(t_body *stacka);
 int					ft_list_size(t_body *stacka);
+void				ifv(t_body *ta, t_body *tb);
 int					set_index(t_body **stacka);
 t_body				*create_node(int value);
 int					validcheck(char *line);

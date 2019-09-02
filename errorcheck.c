@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:52:06 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 19:26:05 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/02 17:16:29 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		checkerror(char *av)
 
 int		checkflgs(char *str, t_flgs *flags)
 {
-    if (ft_strcmp(str, "-v") == 0)
+	if (ft_strcmp(str, "-v") == 0)
 	{
 		flags->v = 1;
 		return (1);
@@ -59,7 +59,7 @@ int		checkflgs(char *str, t_flgs *flags)
 		flags->c = 1;
 		return (1);
 	}
-return (0);
+	return (0);
 }
 
 void	split(char *av, t_body **stacka, t_body **stackb, t_flgs **flags)
@@ -78,31 +78,26 @@ void	split(char *av, t_body **stacka, t_body **stackb, t_flgs **flags)
 
 int		ft_rd(char **av, t_body **stacka, t_body **stackb, t_flgs **flags)
 {
-    int 	i;
+	int	i;
 
-    i = 0;
-    while (av[i] != '\0')
-    {
+	i = -1;
+	while (av[++i] != '\0')
+	{
 		if (ft_strchr(av[i], ' '))
 			split(av[i], stacka, stackb, flags);
-        else if (av[i][0] == '-')
-        {
-            if (checkflgs(av[i], *flags) == 0)
-            {
-				if (checkerror(av[i]) == 0)
-					return (0);
-                addnode(stacka, ft_atoi(av[i]));
-			}
-        }
-        else
-        {
-            if (checkerror(av[i]) == 0)
+		else if (av[i][0] == '-')
+		{
+			if (checkneg(av[i], stacka, flags) == 0)
+				return (0);
+		}
+		else
+		{
+			if (checkerror(av[i]) == 0)
 				return (0);
 			if (isdup(av) == 0)
 				return (0);
-            addnode(stacka, ft_atoi(av[i]));
-        }
-        i++;
-    }
+			addnode(stacka, ft_atoi(av[i]));
+		}
+	}
 	return (1);
 }
