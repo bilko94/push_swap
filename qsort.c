@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:59:03 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 20:40:35 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/03 10:14:06 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort_a(t_body **stacka, t_body **stackb, int grp, double size)
 
 	hold = 1;
 	range = ft_list_size(*stacka) / 2;
-	i = (((grp - 1) * (size / 5)) + 1);
+	i = (((grp - 1) * (size / 8)) + 1);
 	cursor = (*stacka)->next;
 	while (cursor->dx != i && cursor && hold++)
 		cursor = cursor->next;
@@ -72,7 +72,7 @@ void	group_sort(t_body **stacka, t_body **stackb, int grp, double size)
 	int		max;
 
 	range = ft_list_size(*stackb) + 1;
-	max = grp * (size / 5) + 1;
+	max = grp * (size / 8) + 1;
 	while ((*stackb)->next != NULL)
 	{
 		range -= 1;
@@ -115,11 +115,11 @@ void	call_sort(t_body **stacka, t_body **stackb)
 	double	size;
 
 	size = ft_list_size(*stacka);
-	grp = 5;
+	grp = 8;
 	while (grp != 0)
 	{
 		group_push(stacka, stackb, grp);
-		if (grp != 5)
+		if (grp != 8)
 			sort_a(stacka, stackb, (grp + 1), size);
 		group_sort(stacka, stackb, grp, size);
 		grp--;

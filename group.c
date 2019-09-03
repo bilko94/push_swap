@@ -6,7 +6,7 @@
 /*   By: solivari <solivari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 19:57:45 by solivari          #+#    #+#             */
-/*   Updated: 2019/08/30 20:52:54 by solivari         ###   ########.fr       */
+/*   Updated: 2019/09/03 10:08:08 by solivari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	group(t_body **stacka, double size)
 	double		range;
 	double		add;
 
-	range = size / 5;
-	add = size / 5;
+	range = size / 8;
+	add = size / 8;
 	setgroup(*stacka, 1, range);
 	range += add;
 	setgroup(*stacka, 2, range);
@@ -41,6 +41,12 @@ void	group(t_body **stacka, double size)
 	setgroup(*stacka, 4, range);
 	range += add;
 	setgroup(*stacka, 5, range);
+	range += add;
+	setgroup(*stacka, 6, range);
+	range += add;
+	setgroup(*stacka, 7, range);
+	range += add;
+	setgroup(*stacka, 8, range);
 }
 
 void	ifa(t_body **stacka, t_body **stackb, double hold, double range)
